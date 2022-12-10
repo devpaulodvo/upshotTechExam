@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import { React, useState } from "react";
 import styles from "./index.module.css";
 import Image from 'next/image';
 import companyLogo from "../images/upshotlogo.png";
@@ -41,7 +41,29 @@ ChartJS.register(
 )
 
 export default function Page() {
+  const WeeklyData = [
+    {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] ,
+      data: [-1, 0.05, 0.3, 0.4, 0.7, 0.1, 0.8]
+    }
+  ]
 
+  const MonthlyData = [
+    {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] ,
+      data: [-1, 0.05, 0.3, 0.4, 0.7, 0.1, 0.8, 0.3, 0.4, 0.7, 0.1, 0.8]
+    }
+  ]
+
+  const YearlyData = [
+    {
+      labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'] ,
+      data: [-1, 0.3, 0.4, 0.7, 0.8, 0.3, 0.4, 0.7, 0.1, 0.8]
+    }
+  ]
+
+  const [APLS, setAPLS] = useState(MonthlyData);
+  
   const dummyData1 = [
       {
         count: 27632,
@@ -65,13 +87,12 @@ export default function Page() {
       }
     ]
 
-
   const data = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    labels: APLS[0].labels,
     datasets: [
       {
         label: "",
-        data: [0.5, 0.86, 0.6],
+        data: APLS[0].data,
         backgroundColor: '#1C1C24',
         borderColor: '#3DD598',
         pointBorderColor: 'aqua',

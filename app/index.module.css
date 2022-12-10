@@ -224,6 +224,26 @@
     color: #B5B5BE;
 }
 
+.timelinePicker li{
+    border-radius: 8px;
+    width: 72px;
+    padding: 5px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.timelinePicker li:hover{
+    cursor: pointer;
+}
+
+.timeline{
+    background: #1E75FF;
+    border-radius: 8px;
+    width: 72px;
+    padding: 5px;
+    color: #FFFFFF;
+}
+
 .rightsideChart{
     width: 303px;
     height: 481px;

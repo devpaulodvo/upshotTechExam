@@ -43,6 +43,7 @@ ChartJS.register(
 export default function Page() {
   const WeeklyData = [
     {
+      id: 1,
       labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] ,
       data: [-1, 0.05, 0.3, 0.4, 0.7, 0.1, 0.8]
     }
@@ -50,6 +51,7 @@ export default function Page() {
 
   const MonthlyData = [
     {
+      id: 2,
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] ,
       data: [-1, 0.05, 0.3, 0.4, 0.7, 0.1, 0.8, 0.3, 0.4, 0.7, 0.1, 0.8]
     }
@@ -57,6 +59,7 @@ export default function Page() {
 
   const YearlyData = [
     {
+      id: 3,
       labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'] ,
       data: [-1, 0.3, 0.4, 0.7, 0.8, 0.3, 0.4, 0.7, 0.1, 0.8]
     }
@@ -222,10 +225,10 @@ export default function Page() {
           <div className={`${styles.chart}`}>
             <div className={`${styles.chartHeader} flex justify-between`}>
               <h1>Average Leadership Performance Score</h1>
-              <ul className={`${styles.timelinePicker} flex items-center justify-around self-center`}>
-                <li>Weekly</li>
-                <li>Monthly</li>
-                <li>Yearly</li>
+              <ul className={`${styles.timelinePicker} flex items-center content-center`}>
+                <li className={`${APLS[0].id == 1 && styles.timeline}`} onClick={()=>{setAPLS(WeeklyData)}}>Weekly</li>
+                <li className={`${APLS[0].id == 2 && styles.timeline}`} onClick={()=>{setAPLS(MonthlyData)}}>Monthly</li>
+                <li className={`${APLS[0].id == 3 && styles.timeline}`} onClick={()=>{setAPLS(YearlyData)}}>Yearly</li>
               </ul>
             </div>
             <div className={`${styles.lineChart}`}>

@@ -26,7 +26,8 @@ import {
   LineElement,
   CategoryScale, // x axis
   LinearScale, // y axis
-  PointElement
+  PointElement,
+  Tooltip
 } from "chart.js";
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar'; 
 
@@ -40,6 +41,7 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
+  Tooltip
 )
 
 export default function Page() {
@@ -116,15 +118,24 @@ export default function Page() {
         pointBorderColor: 'aqua',
         fillColor: '#1C1C24',
         tension: 0.4,
-        pointBackgroundColor: '#3DD598',
-        pointRadius: 0
+        pointBackgroundColor: '#1E75FF',
+        pointRadius: 0,
+        pointHoverRadius: 6,
+        pointHoverBorderWidth: 2,
+        pointHoverBorderColor: '#292932',
+        pointHitRadius: 6,
       }
     ]
   }
 
   const options = {
     plugins:{
-      legend: true
+      legend: true,
+      tooltip: {
+        // Disable the on-canvas tooltip
+        enabled: true,
+
+      }
     },
     scales: {
       y:{
@@ -133,9 +144,9 @@ export default function Page() {
         ticks: {
           stepSize: 0.5
         }
-      }
+      },
     },
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
   }
 
   const dummydata = {

@@ -18,6 +18,7 @@ import avatarIcon from "../images/avatar.png";
 import arrowDown from "../images/Rectanglearrowdown.png";
 import generateReport from "../images/GenerateReport.png";
 import shapeHit from "../images/ShapeHit.png";
+import shapeBag from "../images/ShapeBag.png";
 import {Roboto } from "@next/font/google";
 import { Line } from 'react-chartjs-2';
 import {
@@ -27,8 +28,7 @@ import {
   LinearScale, // y axis
   PointElement
 } from "chart.js";
-import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
- 
+import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar'; 
 
 const roboto = Roboto({
   subsets:['latin'],
@@ -44,6 +44,7 @@ ChartJS.register(
 
 export default function Page() {
   const percentage = 68;
+  const anotherPercentage = 76;
 
   const WeeklyData = [
     {
@@ -70,6 +71,7 @@ export default function Page() {
   ]
 
   const [APLS, setAPLS] = useState(MonthlyData);
+  const [sectorToggle, setSectorToggle] = useState(false)
   
   const dummyData1 = [
       {
@@ -94,6 +96,13 @@ export default function Page() {
       }
     ]
 
+  const activeManagers = [
+    {
+      count: 10254,
+      percentage: 1.5
+    }
+  ]
+
   const data = {
     labels: APLS[0].labels,
     datasets: [
@@ -104,7 +113,9 @@ export default function Page() {
         borderColor: '#3DD598',
         pointBorderColor: 'aqua',
         fillColor: '#1C1C24',
-        tension: 0.4
+        tension: 0.4,
+        pointBackgroundColor: '#3DD598',
+        pointRadius: 0
       }
     ]
   }
@@ -123,6 +134,41 @@ export default function Page() {
       }
     },
     maintainAspectRatio: false
+  }
+
+  const dummydata = {
+    labels: YearlyData[0].labels,
+    datasets: [
+      {
+        data: YearlyData[0].data,
+        backgroundColor: '#1C1C24',
+        borderColor: '#0062FF',
+        tension: 0.4,
+        pointBackgroundColor: '#3DD598',
+        pointRadius: 0
+      }
+    ]
+  }
+
+  const dummyoptions = {
+    plugins:{
+      legend: true
+
+    },
+    scales: {
+      y:{
+        min:-1,
+        max: 1,
+        ticks: {
+          stepSize: 0.5
+        },
+        display: false
+      },
+      x:{
+        display: false
+      }
+    },
+    maintainAspectRatio: false,
   }
   
   return(
@@ -203,7 +249,16 @@ export default function Page() {
           <div className={`${styles.overviewContainer} flex items-center self-center`}>
             <h1 className={`${styles.overviewText} font-semibold text-2xl text-white`}>Overview</h1>
             <label className={`${roboto.className} text-gray-600 font-normal`}>Show: <span className={`text-slate-50`}>Same Sector</span></label>
-            <Image src={arrowDown} className={styles.arrowDown} width="auto" height="auto"  alt="arrowdown" loading="eager" priority={true}/>
+            <div className={styles.dropdownSectors}>
+              <Image src={arrowDown} className={styles.arrowDown} width="auto" height="auto"  alt="arrowdown" loading="eager" priority={true}/>
+              <ul className={`${styles.dropdownSector} ${roboto.className} flex justify-center`}>
+                <li><input className={styles.radioButton} type="radio" id="boss" name="overview" value="boss"/><span className={styles.radioButtonText}>Same Boss</span></li>
+                <li><input className={styles.radioButton} type="radio" id="joblvl" name="overview" value="joblvl"/><span className={styles.radioButtonText}>Same Job Level</span></li>
+                <li><input className={styles.radioButton} type="radio" id="department" name="overview" value="department"/><span className={styles.radioButtonText}>Same Department</span></li>
+                <li><input className={styles.radioButton} type="radio" id="reports" name="overview" value="reports"/><span className={styles.radioButtonText}>Same Number of Reports</span></li>
+                <li><input className={styles.radioButton} type="radio" id="sector" name="overview" value="sector"/><span className={styles.radioButtonText}>Same Sector</span></li>
+              </ul>
+            </div>
           </div>
           <button onClick={()=>console.log("Test")} type="submit" className={`${styles.generateReportButton} flex justify-evenly items-center self-center`}>
             <Image src={generateReport} width="auto" height="auto"  alt="generatereportbutton" loading="eager" priority={true}/>
@@ -217,7 +272,7 @@ export default function Page() {
               <h1 className={`font-semibold text-white text-base`}>Total # of Feedbacks</h1>
               <h3 className={`font-semibold text-white`}>{dummyData.count}
               {dummyData.percentage >= 0 ? <span className={`${styles.percentageGreen}`}>+{dummyData.percentage}% <span className={`text-xs`}>🡡</span></span>:
-              <span className={`${styles.percentageRed}`}>{dummyData.percentage}% <span className={`text-xs`}>🡣</span></span>
+              <span className={`${styles.percentageRed}`}>{dummyData.percentage}% <span className={`text-xs text-slate-400`}>🡣</span></span>
               }
               </h3>
               <label className={`${roboto.className}`}>Compared to ({dummyData1.prevCount} last year)</label>
@@ -266,14 +321,60 @@ export default function Page() {
                   </CircularProgressbarWithChildren>
                 </div>
                 <div className={`${styles.hitRateText}`}>
-                  <h1>{percentage}</h1>
-                  <label>Closeout Rate this year</label>
+                  <h1>{percentage}%</h1>
+                  <label className={roboto.className}>Closeout Rate this year</label>
                 </div>
               </div>
               <div className={styles.separator}></div>
+              <div className={`${styles.hitRateLower} flex justify-center`}>
+                <div className={`${styles.hitRateLowerBox}`}>
+                  <CircularProgressbarWithChildren
+                    value={anotherPercentage}
+                    styles={buildStyles({
+                      // Rotation of path and trail, in number of turns (0-1)
+                      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                      strokeLinecap: 'round',
+                      // How long animation takes to go from one percentage to another, in seconds
+                      pathTransitionDuration: 0.5,
+                      // Can specify path transition in more detail, or remove it entirely
+                      // pathTransition: 'none',
+                      // Colors
+                      pathColor: `rgba(61, 213, 152)`,
+                      textColor: '#f88',
+                      trailColor: '#1f2e2f',
+                    })}
+                    >
+                      <Image src={shapeBag} className={`${styles.shapeHit}`}  alt="bag" loading="eager" priority={true}/>
+                  </CircularProgressbarWithChildren>
+                </div>
+                <div className={`${styles.hitRateText}`}>
+                  <h1>{anotherPercentage}%</h1>
+                  <label className={roboto.className}>Active Managers this year</label>
+                </div>
+              </div>
             </div>
             <div className={`${styles.allVisitors}`}>
-              
+              <div className={`${styles.bottomline}`}>
+                <Line
+                data={dummydata}
+                options={dummyoptions}
+                ></Line>
+              </div>
+              <div className={`${styles.bottomText} flex justify-evenly`}>
+                {activeManagers[0].percentage < 2 ? 
+                <>
+                <h1>{activeManagers[0].count.toLocaleString()}</h1>
+                <label className={`text-base text-red-500`}>{activeManagers[0].percentage}% <span className={`text-xs text-slate-400`}>🡣</span></label>
+                </>:
+                <>
+                <h1>{activeManagers[0].count.toLocaleString()}</h1>
+                <label className={`text-base text-green-500`}>{activeManagers[0].percentage}% <span className={`text-xs text-green-500`}>🡡</span></label>
+                </>
+                }
+              </div>
+              <div className={`${styles.activeManagers}`}>
+                <label className={roboto.className}>Active managers this month</label>
+              </div>
             </div>
           </div>
         </div>

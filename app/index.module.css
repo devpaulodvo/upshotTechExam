@@ -118,12 +118,64 @@
     margin: auto;
 }
 
+.overviewContainer label{
+    display: flex;
+}
+
+
 .overviewText{
     margin-right:30px;
 }
 
 .arrowDown{
     margin-left: 4px;
+}
+
+.arrowDown{
+    margin-left: 4px;
+}
+
+.arrowDownMenu{
+    margin-left: 4px;
+}
+
+.dropdownSectors{
+    margin:auto;
+}
+
+.dropdownSectors:hover .dropdownSector{
+    display: flex;
+}
+
+.dropdownSector{
+    width: 227.5px;
+    height: 206px;
+    position: absolute;
+    margin-left: -100px;
+    background: #292932;
+    display: none;
+    flex-direction: column;
+    border: 1px solid #44444F;
+    box-shadow: 0px 5px 15px rgba(68, 68, 79, 0.1);
+    border-radius: 8px;
+    color: #fff;
+}
+
+.dropdownSector li{
+    padding: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    font-style: normal;
+}
+
+.radioButton{
+    margin-left: 10px;
+}
+
+.radioButtonText{
+    margin-left: 8px;
 }
 
 .generateReportButton{
@@ -264,6 +316,12 @@
     padding-top: 30px;
 }
 
+.hitRateLower{
+    width: 303px;
+    height: 130px;
+    padding-top: 30px;
+}
+
 .separator{
     border-bottom: 1px solid #44444F;
     width: 80%;
@@ -275,17 +333,17 @@
     height: 130px;
 }
 
-.allVisitors{
-    width: 303px;
-    height: 200px;
-    background: #1C1C24;
-    border-radius: 20px;
-}
-
 .hitRateBox{
     width: 70px;
     height: 70px;
     margin-right: 25px;
+}
+
+.hitRateLowerBox{
+    width: 70px;
+    height: 70px;
+    margin-right: 25px;
+    margin-left: 20px;
 }
 
 .hitRateText{
@@ -302,6 +360,56 @@
     font-size: 14px;
     font-weight: 400;
     color: #92929D;
+}
+
+.allVisitors{
+    width: 303px;
+    height: 200px;
+    background: #1C1C24;
+    border-radius: 20px;
+    padding-top: 40px;
+}
+
+.bottomline{
+    width: 243px;
+    height: 42px;
+    margin: auto;
+    margin-bottom: 32px;
+}
+
+.bottomText{
+    width: 100%;
+    height: 42px;
+    margin: auto;
+}
+
+.bottomText h1{
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    margin:auto;
+}
+
+.bottomText label{
+    font-weight: 600;
+    font-size: 16px;
+    margin:auto;
+}
+
+.activeManagers{
+    margin-right: 30px;
+    width: 243px;
+    height: 42px;
+    margin: auto;
+}
+
+.activeManagers label{
+    color: #92929D;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
 }
 
 

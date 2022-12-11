@@ -46,6 +46,8 @@ export default function Page() {
   const percentage = 68;
   const anotherPercentage = 76;
 
+  const [overviewCategory, setoverviewCategory] = useState(5)
+
   const WeeklyData = [
     {
       id: 1,
@@ -252,11 +254,11 @@ export default function Page() {
             <div className={styles.dropdownSectors}>
               <Image src={arrowDown} className={styles.arrowDown} width="auto" height="auto"  alt="arrowdown" loading="eager" priority={true}/>
               <ul className={`${styles.dropdownSector} ${roboto.className} flex justify-center`}>
-                <li><input className={styles.radioButton} type="radio" id="boss" name="overview" value="boss"/><span className={styles.radioButtonText}>Same Boss</span></li>
-                <li><input className={styles.radioButton} type="radio" id="joblvl" name="overview" value="joblvl"/><span className={styles.radioButtonText}>Same Job Level</span></li>
-                <li><input className={styles.radioButton} type="radio" id="department" name="overview" value="department"/><span className={styles.radioButtonText}>Same Department</span></li>
-                <li><input className={styles.radioButton} type="radio" id="reports" name="overview" value="reports"/><span className={styles.radioButtonText}>Same Number of Reports</span></li>
-                <li><input className={styles.radioButton} type="radio" id="sector" name="overview" value="sector"/><span className={styles.radioButtonText}>Same Sector</span></li>
+                <li className={`${overviewCategory == 1 && styles.dropdownSelectorActive}`}><input onChange={()=>{setoverviewCategory(1)}} checked={overviewCategory == 1 && true} className={`${styles.radioButton}`} type="radio" id="boss" name="overview" value="boss"/><span className={styles.radioButtonText}>Same Boss</span></li>
+                <li className={`${overviewCategory == 2 && styles.dropdownSelectorActive}`}><input onChange={()=>{setoverviewCategory(2)}} checked={overviewCategory == 2 && true} className={`${styles.radioButton}`} type="radio" id="joblvl" name="overview" value="joblvl"/><span className={styles.radioButtonText}>Same Job Level</span></li>
+                <li className={`${overviewCategory == 3 && styles.dropdownSelectorActive}`}><input onChange={()=>{setoverviewCategory(3)}} checked={overviewCategory == 3 && true} className={`${styles.radioButton}`} type="radio" id="department" name="overview" value="department"/><span className={styles.radioButtonText}>Same Department</span></li>
+                <li className={`${overviewCategory == 4 && styles.dropdownSelectorActive}`}><input onChange={()=>{setoverviewCategory(4)}} checked={overviewCategory == 4 && true} className={`${styles.radioButton}`} type="radio" id="reports" name="overview" value="reports"/><span className={styles.radioButtonText}>Same Number of Reports</span></li>
+                <li className={`${overviewCategory == 5 && styles.dropdownSelectorActive}`}><input onChange={()=>{setoverviewCategory(5)}} checked={overviewCategory == 5 && true} className={`${styles.radioButton}`} type="radio" id="sector" name="overview" value="sector"/><span className={styles.radioButtonText}>Same Sector</span></li>
               </ul>
             </div>
           </div>

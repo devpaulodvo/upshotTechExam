@@ -17,6 +17,7 @@ import bellIcon from "../images/Shapebell.png";
 import avatarIcon from "../images/avatar.png";
 import arrowDown from "../images/Rectanglearrowdown.png";
 import generateReport from "../images/GenerateReport.png";
+import shapeHit from "../images/ShapeHit.png";
 import {Roboto } from "@next/font/google";
 import { Line } from 'react-chartjs-2';
 import {
@@ -26,6 +27,7 @@ import {
   LinearScale, // y axis
   PointElement
 } from "chart.js";
+import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
  
 
 const roboto = Roboto({
@@ -41,6 +43,8 @@ ChartJS.register(
 )
 
 export default function Page() {
+  const percentage = 68;
+
   const WeeklyData = [
     {
       id: 1,
@@ -239,11 +243,37 @@ export default function Page() {
             </div>
           </div>
           <div className={`${styles.rightsideChart}`}>
-            <div className={`${styles.hitRate}`}>
-
+            <div className={`${styles.upperBox} justify-center`}>
+              <div className={`${styles.hitRateUpper} flex justify-center`}>
+                <div className={`${styles.hitRateBox}`}>
+                  <CircularProgressbarWithChildren
+                    value={percentage}
+                    styles={buildStyles({
+                      // Rotation of path and trail, in number of turns (0-1)
+                      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                      strokeLinecap: 'round',
+                      // How long animation takes to go from one percentage to another, in seconds
+                      pathTransitionDuration: 0.5,
+                      // Can specify path transition in more detail, or remove it entirely
+                      // pathTransition: 'none',
+                      // Colors
+                      pathColor: `rgba(30, 117, 255)`,
+                      textColor: '#f88',
+                      trailColor: '#1c2539',
+                    })}
+                    >
+                      <Image src={shapeHit} className={`${styles.shapeHit}`} width={20} height={20}  alt="hit" loading="eager" priority={true}/>
+                  </CircularProgressbarWithChildren>
+                </div>
+                <div className={`${styles.hitRateText}`}>
+                  <h1>{percentage}</h1>
+                  <label>Closeout Rate this year</label>
+                </div>
+              </div>
+              <div className={styles.separator}></div>
             </div>
             <div className={`${styles.allVisitors}`}>
-
+              
             </div>
           </div>
         </div>

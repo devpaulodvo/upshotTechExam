@@ -250,12 +250,29 @@
     margin-right: 17px;
 }
 
-.hitRate{
+.upperBox{
     width: 303px;
     height: 261px;
     background: #1C1C24;
     border-radius: 20px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
+}
+
+.hitRateUpper{
+    width: 303px;
+    height: 130px;
+    padding-top: 30px;
+}
+
+.separator{
+    border-bottom: 1px solid #44444F;
+    width: 80%;
+    margin: auto;
+}
+
+.hitRate{
+    width: 303px;
+    height: 130px;
 }
 
 .allVisitors{
@@ -264,3 +281,29 @@
     background: #1C1C24;
     border-radius: 20px;
 }
+
+.hitRateBox{
+    width: 70px;
+    height: 70px;
+    margin-right: 25px;
+}
+
+.hitRateText{
+    height: 70px;
+}
+
+.hitRateText h1{
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.hitRateText label{
+    font-size: 14px;
+    font-weight: 400;
+    color: #92929D;
+}
+
+
+
+
